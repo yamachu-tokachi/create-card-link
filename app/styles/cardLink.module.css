@@ -1,0 +1,156 @@
+.grid {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  align-items: flex-start;
+}
+
+.column {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.formRow {
+  align-items: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.formRow > *:first-child {
+  flex: 1 1 20rem;
+  min-width: 16rem;
+}
+
+.cardBody {
+  display: grid;
+  gap: 1rem;
+}
+
+.results {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.resultItem {
+  align-items: center;
+  border: 1px solid var(--s-color-border-subtle, #d2d5da);
+  border-radius: 0.75rem;
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+}
+
+.resultInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.resultTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.resultMeta {
+  color: #6c7280;
+  font-size: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.notice {
+  background: #fff5e5;
+  border: 1px solid #fed7aa;
+  border-radius: 0.75rem;
+  color: #9a3412;
+  padding: 0.75rem 1rem;
+}
+
+.textareaField {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.textareaField > span {
+  color: #374151;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.textareaField > textarea {
+  border: 1px solid var(--s-color-border-subtle, #d2d5da);
+  border-radius: 0.5rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  padding: 0.75rem;
+  resize: vertical;
+  width: 100%;
+}
+
+.textareaField > textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+  outline: none;
+}
+
+.previewCard {
+  background: #ffffff;
+  border: 1px solid var(--s-color-border-subtle, #d2d5da);
+  border-radius: 0.75rem;
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.previewSurface {
+  background: #f6f7f9;
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+}
+
+.previewInner {
+  display: flex;
+  justify-content: center;
+}
+
+.codeCard {
+  background: #0f172a;
+  border-radius: 0.75rem;
+  color: #e2e8f0;
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.codeBlock {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 0.78rem;
+  line-height: 1.4;
+  margin: 0;
+  max-height: 18rem;
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.copyRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+@media (max-width: 60rem) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .formRow {
+    align-items: stretch;
+  }
+}
