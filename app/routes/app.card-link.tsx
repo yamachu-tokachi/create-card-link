@@ -264,128 +264,124 @@ export default function CardLinkPage() {
   return (
     <s-page heading="カードリンク生成">
       <div className={styles.grid}>
-        <div className={styles.column}>
-          <s-section heading="商品検索">
-            <div className={styles.cardBody}>
-              <searchFetcher.Form method="post">
-                <div className={styles.formRow}>
-                  <s-text-field
-                    name="searchTerm"
-                    label="商品名で検索"
-                    value={searchTerm}
-                    onChange={(event) => setSearchTerm(event.currentTarget.value)}
-                    placeholder="例: 華粉"
-                  ></s-text-field>
-                  <s-button
-                    type="submit"
-                    variant="primary"
-                    {...(isSearching ? { loading: true } : {})}
-                    disabled={!searchTerm.trim()}
-                  >
-                    検索
-                  </s-button>
-                </div>
-              </searchFetcher.Form>
-              {products.length > 0 && (
-                <div className={styles.results}>
-                  {products.map((product) => (
-                    <div className={styles.resultItem} key={product.id}>
-                      <div className={styles.resultInfo}>
-                        <span className={styles.resultTitle}>{product.title}</span>
-                        <span className={styles.resultMeta}>
-                          {product.onlineStoreUrl ?? "オンラインストアURLが未設定です"}
-                        </span>
-                      </div>
-                      <s-button
-                        type="button"
-                        variant="tertiary"
-                        onClick={() => applyProduct(product)}
-                      >
-                        取り込む
-                      </s-button>
-                    </div>
-                  ))}
-                </div>
-              )}
-              {!isSearching && products.length === 0 && searchTerm.trim() && (
-                <s-text>検索結果が見つかりませんでした。</s-text>
-              )}
-            </div>
-          </s-section>
-
-          <s-section heading="入力フィールド">
-            <div className={styles.cardBody}>
-              {missingFields.length > 0 && (
-                <div className={styles.notice}>
-                  {missingFields.join("、")} を手動で入力してください。
-                </div>
-              )}
-              <s-text-field
-                name="product_url"
-                label="product_url"
-                value={productUrl}
-                onChange={(event) => setProductUrl(event.currentTarget.value)}
-                placeholder="https://"
-              ></s-text-field>
-              <s-text-field
-                name="image_url"
-                label="image_url"
-                value={imageUrl}
-                onChange={(event) => setImageUrl(event.currentTarget.value)}
-                placeholder="https://"
-              ></s-text-field>
-              <s-text-field
-                name="title_text"
-                label="title_text"
-                value={titleText}
-                onChange={(event) => setTitleText(event.currentTarget.value)}
-                placeholder="例: 小麦粉「華粉（はなこ）」北海道産きたほなみ100%"
-              ></s-text-field>
-              <label className={styles.textareaField}>
-                <span>description_text</span>
-                <textarea
-                  name="description_text"
-                  value={descriptionText}
-                  onChange={(event) => setDescriptionText(event.currentTarget.value)}
-                  placeholder="説明文を入力してください"
-                  rows={5}
-                />
-              </label>
-            </div>
-          </s-section>
-        </div>
-
-        <div className={styles.column}>
-          <div className={styles.previewCard}>
-            <s-heading>プレビュー</s-heading>
-            <div className={styles.previewSurface}>
-              {generatedHtml ? (
-                <div
-                  className={styles.previewInner}
-                  dangerouslySetInnerHTML={{ __html: generatedHtml }}
-                />
-              ) : (
-                <s-text>必要なフィールドが揃うとカードプレビューが表示されます。</s-text>
-              )}
-            </div>
-          </div>
-
-          <div className={styles.previewCard}>
-            <s-heading>生成HTML</s-heading>
-            <div className={styles.codeCard}>
-              <pre className={styles.codeBlock}>
-                <code>{generatedHtml || "<!-- 入力を完了するとHTMLが表示されます -->"}</code>
-              </pre>
-              <div className={styles.copyRow}>
+        <s-section heading="商品検索">
+          <div className={styles.cardBody}>
+            <searchFetcher.Form method="post">
+              <div className={styles.formRow}>
+                <s-text-field
+                  name="searchTerm"
+                  label="商品名で検索"
+                  value={searchTerm}
+                  onChange={(event) => setSearchTerm(event.currentTarget.value)}
+                  placeholder="例: 華粉"
+                ></s-text-field>
                 <s-button
-                  type="button"
+                  type="submit"
                   variant="primary"
-                  onClick={handleCopy}
-                  disabled={isCopyDisabled}
+                  {...(isSearching ? { loading: true } : {})}
+                  disabled={!searchTerm.trim()}
                 >
-                  HTMLをコピー
+                  検索
                 </s-button>
               </div>
+            </searchFetcher.Form>
+            {products.length > 0 && (
+              <div className={styles.results}>
+                {products.map((product) => (
+                  <div className={styles.resultItem} key={product.id}>
+                    <div className={styles.resultInfo}>
+                      <span className={styles.resultTitle}>{product.title}</span>
+                      <span className={styles.resultMeta}>
+                        {product.onlineStoreUrl ?? "オンラインストアURLが未設定です"}
+                      </span>
+                    </div>
+                    <s-button
+                      type="button"
+                      variant="tertiary"
+                      onClick={() => applyProduct(product)}
+                    >
+                      取り込む
+                    </s-button>
+                  </div>
+                ))}
+              </div>
+            )}
+            {!isSearching && products.length === 0 && searchTerm.trim() && (
+              <s-text>検索結果が見つかりませんでした。</s-text>
+            )}
+          </div>
+        </s-section>
+
+        <s-section heading="入力フィールド">
+          <div className={styles.cardBody}>
+            {missingFields.length > 0 && (
+              <div className={styles.notice}>
+                {missingFields.join("、")} を手動で入力してください。
+              </div>
+            )}
+            <s-text-field
+              name="product_url"
+              label="product_url"
+              value={productUrl}
+              onChange={(event) => setProductUrl(event.currentTarget.value)}
+              placeholder="https://"
+            ></s-text-field>
+            <s-text-field
+              name="image_url"
+              label="image_url"
+              value={imageUrl}
+              onChange={(event) => setImageUrl(event.currentTarget.value)}
+              placeholder="https://"
+            ></s-text-field>
+            <s-text-field
+              name="title_text"
+              label="title_text"
+              value={titleText}
+              onChange={(event) => setTitleText(event.currentTarget.value)}
+              placeholder="例: 小麦粉「華粉（はなこ）」北海道産きたほなみ100%"
+            ></s-text-field>
+            <label className={styles.textareaField}>
+              <span>description_text</span>
+              <textarea
+                name="description_text"
+                value={descriptionText}
+                onChange={(event) => setDescriptionText(event.currentTarget.value)}
+                placeholder="説明文を入力してください"
+                rows={5}
+              />
+            </label>
+          </div>
+        </s-section>
+
+        <div className={styles.previewCard}>
+          <s-heading>プレビュー</s-heading>
+          <div className={styles.previewSurface}>
+            {generatedHtml ? (
+              <div
+                className={styles.previewInner}
+                dangerouslySetInnerHTML={{ __html: generatedHtml }}
+              />
+            ) : (
+              <s-text>必要なフィールドが揃うとカードプレビューが表示されます。</s-text>
+            )}
+          </div>
+        </div>
+
+        <div className={styles.previewCard}>
+          <s-heading>生成HTML</s-heading>
+          <div className={styles.codeCard}>
+            <pre className={styles.codeBlock}>
+              <code>{generatedHtml || "<!-- 入力を完了するとHTMLが表示されます -->"}</code>
+            </pre>
+            <div className={styles.copyRow}>
+              <s-button
+                type="button"
+                variant="primary"
+                onClick={handleCopy}
+                disabled={isCopyDisabled}
+              >
+                HTMLをコピー
+              </s-button>
             </div>
           </div>
         </div>
