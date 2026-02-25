@@ -2,7 +2,7 @@
   "name": "create-card-link",
   "private": true,
   "scripts": {
-    "build": "react-router build",
+    "build": "prisma generate && prisma db push && remix build",
     "dev": "shopify app dev",
     "config:link": "shopify app config link",
     "generate": "shopify app generate",
